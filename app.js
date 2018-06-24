@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 const request = require('request');
 
 request({
@@ -5,5 +6,5 @@ request({
         json: true
     },
     (error, response, body) => {
-        console.log(body);
+        console.log(JSON.stringify(body, undefined, 2));
     });
