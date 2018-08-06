@@ -18,3 +18,13 @@ Despues:
 en caso de encontrar vulnerabilidades, correr
 
 > npm audit fix
+
+# Como usar la app
+
+Teclear en consola algo como:
+
+> node app.js  -a "1301 Lombard street"
+
+o el zip code
+
+> node app.js  -a 92231
