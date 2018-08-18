@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 const request = require('request');
 const yargs = require('yargs');
-
+const clima = require('./weather/weather');
 const geocode = require('./geocode/geocode');
 
 const argv = yargs.options({
@@ -22,20 +22,15 @@ geocode.geocodeAddress(argv.address, (errorMessage, results) => {
         console.log(JSON.stringify(results, undefined, 2));
         const latitude = results.latitude;
         const longitude = results.longitude;
-        const endPoint = `https://api.darksky.net/forecast/e0fdbc783456e99e64fe1c2e6c85b6b1/${latitude},${longitude}`;
-        request({
-                url: endPoint,
-                json: true
-            },
-            (error, response, body) => {
-                if (error) {
-                    console.log('Unable to connect to forecast service');
-                } else if (response.statusCode == 400 || response.statusCode == 404) {
-                    console.log('Unable to fetch weather');
-                } else if (response.statusCode == 200) {
-                    console.log(body.currently);
-                }
-            });
+        clima.getWeather(latitude, longitude, (werrorMessage, weatherResults) => {
+            if (werrorMessage) {
+                console.log(werrorMessage);
+            } else {
+                console.log(`It's currently ${weatherResults.temperature}. It feels like ${weatherResults.apparentTemperature}.`);
+                // console.log(weatherResults);
+                // console.log(JSON.stringify(weatherResults, undefined, 2));
+            }
+        });
     }
 });
 
