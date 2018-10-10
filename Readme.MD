@@ -28,3 +28,11 @@ Teclear en consola algo como:
 o el zip code
 
 > node app.js  -a 92231
+
+## Configurando area de trabajo de vs code 
+
+`Ctrl + , `   , después Caracteristicas > Depurar > Editar en setting.json  y poner lo siguiente
+
+`{
+    "jshint.options": {"esversion": 6}
+ }`
